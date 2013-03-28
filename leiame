@@ -1,0 +1,43 @@
+# estrutura
+
+# arquivos
+dummy.sh # jogador aleatorio utilizado no algoritmo de round robin quando o numero de jogadores eh impar
+iniciaJuiz.sh # inicia o juiz que faz o jogo
+moduloTeste.py # para um mapa de entrada, devolve os mapas seguintes possiveis
+testaAdjacente.sh # recebe um mapa de entrada, valida-o, e chama moduloTeste.py
+fazJogada.sh # recebe um mapa. executa trabalho. executa o testaAdjacente.sh. faz grep dos resultados. se valido, retorna 1 e mapa. se invalido, retorna zero.
+geraHtml.py # gera HTML do ranking
+# diretórios
+trabalhos/ # diretório onde devem estar os trabalhos que jogarão
+html/ # pagina html gerada (ranking)
+
+
+
+#fluxo:
+
+# torneio
+iniciaJuiz.sh
+{
+	(lista trabalhos) > gera lista de jogadores [1.pl,2.pl,3.pl,4.pl,5.pl,...,n.pl]
+	executa cerebroJuiz.py [1.pl,2.pl,3.pl,4.pl,5.pl,...,n.pl]
+	{
+		(faz todos contra todos)
+		while
+		{
+			executa J1XJ2 e J2XJ1
+			while (jogo nao acaba)
+			{
+			> fazJogada.sh [mapa] J # J = login.pl
+				> retornoJogador=$(executa trabalho)
+				> executa testaAdjacente.sh | grep -q $retornoJogador
+				se $?=0, retorna "0 $retornoJogador" # jogada valida
+				se $?=1, retorna 1 # jogada invalida
+			( testa fim de jogo ) # se teve jogada invalida ou se alguem ganhou
+			}
+		}
+		( imprim em html )	
+	}
+}
+
+# testando um trabalho
+testaAdjacente.sh [mapa]
