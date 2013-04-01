@@ -28,4 +28,4 @@ fi
 
 
 # inicia juiz
-python2.7 $pathJuiz $jogadores 
+python3 $pathJuiz $jogadores 

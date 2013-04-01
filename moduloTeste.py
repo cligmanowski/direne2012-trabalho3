@@ -16,7 +16,7 @@ def adjacentes(tabuleiro,pote,vez,pote_nao_muda): #faz todas as jogadas possíve
 	status=0
 
 	if ( vez=='a' ):
-		for i in range(0, tamanho/2):
+		for i in range(0, tamanho//2):
 			status=jogada(tabuleiro,i,pote,vez,pote_nao_muda)
 			if (status==2):
 				imprime(tabuleiro,pote,pote_nao_muda,tamanho)
@@ -78,7 +78,7 @@ def imprime(tabuleiro,pote,pote2,tamanho): #Imprime no formato da especificaçã
 	tab.append(tabuleiro[0:4])
 	tab.append(tabuleiro[4:tamanho])
 	tab.append(temp2)
-	print tab
+	print(tab)
 
 
 if __name__ == "__main__":        

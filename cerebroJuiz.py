@@ -46,9 +46,9 @@ def round_robin(jogadores):
 def faz_rodada():
 	global tamanho_argumentos, lista_programas, lista_exec
 	lista_temp = []
-	numero_jogos = tamanho_argumentos/2
+	numero_jogos = tamanho_argumentos//2
 	
-	for i in range(1, numero_jogos+1):
+	for i in range(1, numero_jogos+1):		
 		lista_temp.append("{} vs {}".format(lista_programas[i-1], lista_programas[tamanho_argumentos-i]))
 		lista_temp.append(partida(lista_programas[i-1], lista_programas[tamanho_argumentos-i]))
 		lista_exec.append(lista_temp)
@@ -57,7 +57,6 @@ def faz_rodada():
 		lista_temp.append(partida(lista_programas[tamanho_argumentos-i],lista_programas[i-1]))
 		lista_exec.append(lista_temp)
 		lista_temp = []
-
 
 #Executa uma partida entre dois jogadores
 def partida(jogador1,jogador2):
@@ -71,8 +70,8 @@ def partida(jogador1,jogador2):
 	poteB=[0]
 	
 
-	#print "\n\n INICIO {} VS {} \n\n".format(jogador1[0],jogador2[0])
-	#print " ---------------------------------------------------------------------\n\n"
+	#print("\n\n INICIO {} VS {} \n\n".format(jogador1[0],jogador2[0])")
+	#print(" ---------------------------------------------------------------------\n\n")
 	while((int(poteA[0])<12) and (int(poteB[0])<12)):
 		mapa="[{},{},{},{}]".format(poteA,mapa_inicialA,mapa_inicialB,poteB)
 		
@@ -83,13 +82,17 @@ def partida(jogador1,jogador2):
 		else:
 			retorno=subprocess.check_output(["bash",arquivo_fazjogada,mapa,jogador2[0],vez])
 		
-		#print ("Jogadores: {} {} Vez:{} Jogada: {}".format(jogador1[0],jogador2[0],vez,retorno[2:]))
+		#Essa linha é necessária porque o retorno do subprocess no python3+ é na forma de bytes b' ' e para tratar como string
+		#tem que usar o método decode
+		retorno=retorno.decode("utf-8")
+		print("Jogadores: {} {} Vez:{} Jogada: {}".format(jogador1[0],jogador2[0],vez,retorno[2:]))
 		if (retorno[0])=="0":
 			mapa=ast.literal_eval(retorno[2:])
 			poteA=mapa[0]
 			mapa_inicialA=mapa[1]
 			mapa_inicialB=mapa[2]
 			poteB=mapa[3]
+			
 		
 		elif (retorno[0])=="1":
 			if (vez=="a"):
@@ -105,8 +108,8 @@ def partida(jogador1,jogador2):
 			vez="b"
 		else:
 			vez="a"
-	#print "\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0])
-	#print " ---------------------------------------------------------------------\n\n"
+	#print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
+	#print(" ---------------------------------------------------------------------\n\n")
 	if (int(poteA[0])>=12):
 		jogador1[1]=jogador1[1]+1
 		#print "Jogador {} ganhou".format(jogador1[0])

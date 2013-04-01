@@ -46,4 +46,4 @@ fi
 tabuleiroTestado="[$jogadorA,$vetorTabuleiro,$jogadorB] $turnoJogador"
 
 #chama modulo python
-python2.7 $moduloPython $tabuleiroTestado
+python3 $moduloPython $tabuleiroTestado
