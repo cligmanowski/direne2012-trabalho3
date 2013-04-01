@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #importando classes
+from __future__ import absolute_import, print_function, unicode_literals
 import sys
 import os
 
