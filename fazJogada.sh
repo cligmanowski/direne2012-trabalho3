@@ -10,7 +10,7 @@
 mapa=$( echo $1 | tr -d " ") # mapa atual do juiz
 login=$2 # nome do arquivo sem o "pl"
 jogador=$3 # vez do jogador
-altura=3 # altura maxima do planejamento
+altura=6 # altura maxima do planejamento
 pathTrabalhos=./trabalhos/
 
 

@@ -70,11 +70,11 @@ def partida(jogador1,jogador2):
 	poteB=[0]
 	
 
-	#print("\n\n INICIO {} VS {} \n\n".format(jogador1[0],jogador2[0])")
-	#print(" ---------------------------------------------------------------------\n\n")
+	print("\n\n INICIO {} VS {} \n\n".format(jogador1[0],jogador2[0]))
+
 	while((int(poteA[0])<12) and (int(poteB[0])<12)):
 		mapa="[{},{},{},{}]".format(poteA,mapa_inicialA,mapa_inicialB,poteB)
-		
+
 		if (vez=="a"):
 			retorno=subprocess.check_output(["bash",arquivo_fazjogada,mapa,jogador1[0],vez])
 			
@@ -97,26 +97,34 @@ def partida(jogador1,jogador2):
 		elif (retorno[0])=="1":
 			if (vez=="a"):
 				jogador2[1]=jogador2[1]+1	
-				#print "Jogador {} ganhou".format(jogador2[0])
+				print("Jogador {} ganhou".format(jogador2[0]))
+				print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
+				print("---------------------------------------------------------------------\n")
 				return "Jogador {} ganhou".format(jogador2[0])
 			else:
 				jogador1[1]=jogador1[1]+1
-				#print "Jogador {} ganhou".format(jogador1[0])
+				print("Jogador {} ganhou".format(jogador1[0]))
+				print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
+				print("---------------------------------------------------------------------\n")
 				return "Jogador {} ganhou".format(jogador1[0])
 		
 		if (vez=="a"):
 			vez="b"
 		else:
 			vez="a"
-	#print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
-	#print(" ---------------------------------------------------------------------\n\n")
+
+	
 	if (int(poteA[0])>=12):
 		jogador1[1]=jogador1[1]+1
-		#print "Jogador {} ganhou".format(jogador1[0])
+		print("Jogador {} ganhou".format(jogador1[0]))
+		print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
+		print("---------------------------------------------------------------------\n")
 		return "Jogador {} ganhou".format(jogador1[0])
 	else:
 		jogador2[1]=jogador2[1]+1
-		#print "Jogador {} ganhou".format(jogador2[0])
+		print("Jogador {} ganhou".format(jogador2[0]))
+		print("\n\n TERMINOU {} VS {} ".format(jogador1[0],jogador2[0]))
+		print("---------------------------------------------------------------------\n")
 		return "Jogador {} ganhou".format(jogador2[0])
 
 if __name__ == "__main__":

@@ -11,6 +11,7 @@ pathTrabalhos="./trabalhos"
 pathJuiz="cerebroJuiz.py"
 jogadores=$( ls $pathTrabalhos | sed 's#\.pl##g' )
 numeroJogadores=$( ls $pathTrabalhos | wc -l )
+partidas="partidas.txt"
 
 # adiciona jogador aleatorio caso exista numero impar de jogadores
 # motivo: um problema inerente do algoritmo de roudrobin eh que
@@ -28,4 +29,4 @@ fi
 
 
 # inicia juiz
-python3 $pathJuiz $jogadores 
+python3 $pathJuiz $jogadores > $partidas
